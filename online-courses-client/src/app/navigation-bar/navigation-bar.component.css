@@ -1,0 +1,123 @@
+/* navigation-bar.component.css */
+.navbar {
+  background-color:#004d40; /* Angular Material Primary color */
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* מאפשר גלישה לפריטים במסכים קטנים */
+}
+
+.navbar-brand a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.4em;
+  font-weight: bold;
+  padding: 8px 0;
+}
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-links a, .nav-links .nav-button {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1em;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  background: none;
+  border: none;
+  display: block; /* כדי למלא את כל רוחב ה-li במובייל */
+  width: 100%; /* כדי למלא את כל רוחב ה-li במובייל */
+  text-align: center; /* ליישור טקסט במובייל */
+}
+
+.nav-links a:hover, .nav-links .nav-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.nav-button {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.nav-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* סגנון כפתור המבורגר */
+.hamburger-menu {
+  display: none; /* נסתר כברירת מחדל בדסקטופ */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  position: relative; /* למיקום הפסים */
+  z-index: 1001; /* ודא שהוא מעל התפריט */
+}
+
+.hamburger-menu .bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 5px auto;
+  transition: all 0.3s ease-in-out;
+}
+
+/* רספונסיביות */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: row; /* שומר על לוגו והמבורגר באותה שורה */
+    justify-content: space-between;
+  }
+
+  .hamburger-menu {
+    display: block; /* הצג את כפתור ההמבורגר במובייל */
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    max-height: 0; /* הסתר את התפריט כברירת מחדל */
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    background-color: #3f51b5; /* רקע לתפריט הנפתח */
+    position: absolute;
+    top: 60px; /* מיקום מתחת לסרגל הניווט */
+    left: 0;
+    z-index: 1000;
+  }
+
+  .nav-links.open {
+    max-height: 300px; /* גלה את התפריט כאשר הוא פתוח (התאם לפי הצורך) */
+    padding-bottom: 10px; /* רווח תחתון כשהתפריט פתוח */
+  }
+
+  .nav-links li {
+    margin: 0; /* הסר רווחים אופקיים */
+    width: 100%; /* תפוס את כל רוחב התפריט */
+    text-align: center;
+  }
+
+  .nav-links li a, .nav-links li button {
+    padding: 15px 0; /* הגדל ריפוד לפריטים במובייל */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* קו הפרדה בין פריטים */
+  }
+
+  .nav-links li:last-child a, .nav-links li:last-child button {
+    border-bottom: none; /* הסר קו הפרדה מפריט אחרון */
+  }
+}

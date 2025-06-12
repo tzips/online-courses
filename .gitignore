@@ -1,0 +1,26 @@
+# online-courses-client-new/.gitignore
+
+# Angular client
+/online-courses-client/node_modules
+/online-courses-client/dist
+/online-courses-client/.angular
+/online-courses-client/tmp
+/online-courses-client/out-tsc
+/online-courses-client/*.log
+
+# Node.js server
+/online-courses-server/node_modules
+/online-courses-server/.env
+/online-courses-server/*.log
+
+# General IDE and OS files
+.DS_Store
+Thumbs.db
+*.log
+*.jsonc
+*.tgz
+.gitkeep
+.history/
+
+# VS Code settings (if you want to ignore them globally)
+.vscode/

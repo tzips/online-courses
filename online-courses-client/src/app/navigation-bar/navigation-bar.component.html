@@ -1,0 +1,31 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a routerLink="/home">קליקוד</a>
+  </div>
+
+  <button class="hamburger-menu" (click)="toggleMenu()">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+
+  <ul class="nav-links" [class.open]="isMenuOpen">
+    <li><a routerLink="/home" (click)="isMenuOpen = false">בית</a></li>
+    <li><a routerLink="/courses" (click)="isMenuOpen = false">קורסים</a></li>
+    <li *ngIf="isTeacherLoggedIn">
+      <a routerLink="/admin/courses" (click)="isMenuOpen = false">ניהול קורסים</a>
+    </li>
+    <li *ngIf="isLoggedIn">
+      <a routerLink="/profile" (click)="isMenuOpen = false">פרופיל</a>
+    </li>
+    <li *ngIf="isLoggedIn">
+      <button (click)="logout()" class="nav-button">התנתק</button>
+    </li>
+    <li *ngIf="!isLoggedIn">
+      <button (click)="openLoginDialog()" class="nav-button">התחברות</button>
+    </li>
+    <li *ngIf="!isLoggedIn">
+      <button (click)="openRegisterDialog()" class="nav-button">הרשמה</button>
+    </li>
+  </ul>
+</nav>

@@ -1,0 +1,120 @@
+<!-- <div class="container">
+  <div class="mode-switch"><button mat-button [class.active]="isLoginMode === true" (click)="onSwitchMode('login')">התחברות</button>
+    <button mat-button [class.active]="isLoginMode === false" (click)="onSwitchMode('register')">הרשמה</button>
+    <hr>
+
+    <div *ngIf="isLoginMode === true">
+    <h2>התחברות</h2>
+    <form (submit)="login()" #loginForm="ngForm">
+      <mat-form-field appearance="outline">
+        <mat-label>כתובת דוא"ל</mat-label>
+        <input matInput placeholder="להכנס כתובת דוא" [(ngModel)]="loginData.email" name="loginEmail" required email />
+        <mat-error *ngIf="loginForm.controls['loginEmail']?.invalid">
+          כתובת דוא"ל לא תקינה
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>סיסמה</mat-label>
+        <input matInput type="password" placeholder="הכנס סיסמה" [(ngModel)]="loginData.password" name="loginPassword" required />
+        <mat-error *ngIf="loginForm.controls['loginPassword']?.invalid">
+          הסיסמה נדרשת
+        </mat-error>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">התחבר</button>
+    </form>
+  </div>
+  
+    <hr>
+    <div *ngIf="isLoginMode === false">
+    <h2>הרשמה</h2>
+    <form (submit)="register()" #registerForm="ngForm">
+      <mat-form-field appearance="outline">
+        <mat-label>שם מלא</mat-label>
+        <input matInput placeholder="הכנס שם מלא" [(ngModel)]="registerData.name" name="registerName" required />
+        <mat-error *ngIf="registerForm.controls['registerName']?.invalid">
+          שם מלא נדרש
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>כתובת דוא"ל</mat-label>
+      <input matInput placeholder="להכניס כתובת דואר אלקטרוני" [(ngModel)]="registerData.email" name="registerEmail" required email >
+        <mat-error *ngIf="registerForm.controls['registerEmail']?.invalid">
+          כתובת דוא"ל לא תקינה
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>סיסמה</mat-label>
+        <input matInput type="password" placeholder="הכנס סיסמה" ngcontrolname="password" name="registerPassword" required />
+        <mat-error *ngIf="registerForm.controls['registerPassword']?.invalid">
+          הסיסמה נדרשת
+        </mat-error>
+      </mat-form-field>
+    
+  
+      <mat-form-field appearance="outline">
+        <mat-label>תפקיד</mat-label>
+        <mat-select [(ngModel)]="registerData.role" name="registerRole" required>
+          <mat-option value="student">תלמיד</mat-option>
+          <mat-option value="teacher">מורה</mat-option>
+        </mat-select>
+        <mat-error *ngIf="registerForm.controls['registerRole']?.invalid">
+          יש לבחור תפקיד
+        </mat-error>
+      </mat-form-field>
+  
+      <button mat-raised-button color="accent" type="submit" >הרשם</button>
+    </form>
+  </div>
+</div> -->
+<h2>הרשמה</h2>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline">
+    <mat-label>שם מלא</mat-label>
+    <input matInput placeholder="הכנס שם מלא" formControlName="name" required />
+    <mat-error *ngIf="registerForm.controls['name']?.invalid">
+      שם מלא נדרש
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>כתובת דוא"ל</mat-label>
+    <input matInput placeholder="להכניס כתובת דואר אלקטרוני" formControlName="email" required email />
+    <mat-error *ngIf="registerForm.controls['email']?.invalid">
+      כתובת דוא"ל לא תקינה
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>סיסמה</mat-label>
+    <input matInput type="password" placeholder="הכנס סיסמה" formControlName="password" required />
+    <mat-error *ngIf="registerForm.controls['password']?.invalid">
+      הסיסמה נדרשת
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>תפקיד</mat-label>
+    <mat-select formControlName="role" required>
+      <mat-option value="student">תלמיד</mat-option>
+      <mat-option value="teacher">מורה</mat-option>
+    </mat-select>
+    <mat-error *ngIf="registerForm.controls['role']?.invalid">
+      יש לבחור תפקיד
+    </mat-error>
+  </mat-form-field>
+
+  <div class="actions">
+    <button mat-raised-button color="accent" type="submit" [disabled]="registerForm.invalid">הרשם</button>
+    <button mat-button (click)="onNoClick()">סגור</button>
+  </div>
+</form>
+
+
+
+
+
+

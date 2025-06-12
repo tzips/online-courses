@@ -1,0 +1,145 @@
+
+// @use '@angular/material' as mat;
+
+// // כלול את סגנונות הליבה של Material
+// @include mat.core();
+
+// // הגדרת פלטת צבעים
+// $primary: (
+//   50: #e0f7fa,
+//   100: #b2ebf2,
+//   200: #80deea,
+//   300: #4dd0e1,
+//   400: #26c6da,
+//   500: #00bcd4,
+//   600: #00acc1,
+//   700: #0097a7,
+//   800: #00838f,
+//   900: #006064,
+//   contrast: (
+//     50: rgba(black, 0.87),
+//     100: rgba(black, 0.87),
+//     200: rgba(black, 0.87),
+//     300: rgba(black, 0.87),
+//     400: rgba(black, 0.87),
+//     500: white,
+//     600: white,
+//     700: white,
+//     800: white,
+//     900: white,
+//   )
+// );
+
+// $accent: (
+//   50: #fff8e1,
+//   100: #fff379,
+//   200: #ffe082,
+//   300: #ffd54f,
+//   400: #ffca28,
+//   500: #ffc107,
+//   600: #ffb300,
+//   700: #ffa000,
+//   800: #ff8f00,
+//   900: #ff6f00,
+//   contrast: (
+//     50: rgba(black, 0.87),
+//     100: rgba(black, 0.87),
+//     200: rgba(black, 0.87),
+//     300: rgba(black, 0.87),
+//     400: rgba(black, 0.87),
+//     500: rgba(black, 0.87),
+//     600: rgba(black, 0.87),
+//     700: rgba(black, 0.87),
+//     800: rgba(black, 0.87),
+//     900: white,
+//   )
+// );
+
+// $warn: (
+//   50: #fff3e0,
+//   100: #ffebee,
+//   200: #ffcdd2,
+//   300: #ef9a9a,
+//   400: #e57373,
+//   500: #ef5350,
+//   600: #f44336,
+//   700: #e53935,
+//   800: #d32f2f,
+//   900: #c62828,
+//   contrast: (
+//     50: rgba(black, 0.87),
+//     100: rgba(black, 0.87),
+//     200: rgba(black, 0.87),
+//     300: rgba(black, 0.87),
+//     400: rgba(black, 0.87),
+//     500: white,
+//     600: white,
+//     700: white,
+//     800: white,
+//     900: white,
+//   )
+// );
+
+// // // יצירת ערכת הנושא
+// // // $theme: mat.define-light-theme((
+// // //   color: (
+// // //     primary: $primary,
+// // //     accent: $accent,
+// // //     warn: $warn,
+// // //   ),
+// // //   typography: mat.define-typography-config(),
+// // //   density: 0,
+// // // ));
+
+// // // הכללת ערכת הנושא על כל רכיבי Angular Material
+// // // @include mat.all-component-themes($theme);
+
+// /* --- סגנונות גלובליים --- */
+// html, body {
+//   height: 100%;
+// }
+// body {
+//   margin: 0;
+//   font-family: Roboto, "Helvetica Neue", sans-serif;
+//   direction: rtl;
+// }
+
+// /* כללים נוספים שתרצי להוסיף */
+// ייבוא נושא מוכן של Angular Material
+// בחר אחד מהנושאים האלה כדי לקבל עיצוב בסיסי:
+// @import '@angular/material/prebuilt-themes/indigo-pink.css';
+// @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+// @import '@angular/material/prebuilt-themes/pink-bluegrey.css';
+// ייבוא נושא מוכן של Angular Material - בחר נושא בהיר יותר
+// ייבוא נושא מוכן של Angular Material.
+// בחר אחד מהבאים לבסיס בהיר יותר:
+// @import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css'; // בוא ננסה את זה, הוא לרוב בהיר.
+// אם עדיין תמצא אותו כהה מדי, תוכל לנסות גם את indigo-pink.css.
+
+/* --- סגנונות גלובליים --- */
+html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  direction: rtl; /* כיוון טקסט מימין לשמאל */
+  background-color: #f5f5f5; /* רקע עדין ובהיר לכל הדף */
+}
+
+/* כללים לתיקון בעיות חפיפה בפופ-אפים (נשמור אותם למקרה שעדיין רלוונטיים) */
+.mat-mdc-form-field {
+  margin-bottom: 16px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.mat-mdc-dialog-content .mat-mdc-form-field {
+  margin-bottom: 16px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+

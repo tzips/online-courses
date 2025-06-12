@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>ערוך פרטי פרופיל</h2>
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content class="mat-typography">
+    <mat-form-field appearance="outline" class="full-width-field">
+      <mat-label>שם משתמש</mat-label>
+      <input matInput formControlName="name" required>
+      <mat-error *ngIf="userForm.controls['name'].invalid && (userForm.controls['name'].dirty || userForm.controls['name'].touched)">
+        שם משתמש נדרש.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width-field">
+      <mat-label>סיסמה</mat-label>
+      <input matInput formControlName="password" type="password" required>
+      <mat-error *ngIf="userForm.controls['password'].invalid && (userForm.controls['password'].dirty || userForm.controls['password'].touched)">
+        סיסמה נדרשת.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width-field">
+      <mat-label>אימייל</mat-label>
+      <input matInput formControlName="email" type="email" required>
+      <mat-error *ngIf="userForm.controls['email'].invalid && (userForm.controls['email'].dirty || userForm.controls['email'].touched)">
+        אנא הזן כתובת אימייל חוקית.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width-field">
+      <mat-label>תפקיד</mat-label>
+      <input matInput formControlName="role" readonly>
+    </mat-form-field>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" type="submit" [disabled]="userForm.invalid">
+      שמור שינויים
+    </button>
+    <button mat-button (click)="onCancel()" type="button">ביטול</button>
+  </mat-dialog-actions>
+</form>

@@ -1,0 +1,52 @@
+<div class="instructor-profile-container">
+    <h2>פרופיל מורה</h2>
+  
+    <div *ngIf="isLoading" class="loading-indicator">
+      טוען נתונים...
+      <mat-spinner diameter="30"></mat-spinner>
+    </div>
+  
+    <div *ngIf="error" class="error-message">
+      <p>שגיאה: {{ error }}</p>
+    </div>
+  
+    <ng-container *ngIf="!isLoading && !error">
+      <ng-container *ngIf="(instructor$ | async) as instructor; else noInstructor">
+        <div class="profile-details">
+          <h3>פרטים אישיים:</h3>
+          <p><strong>שם:</strong> {{ instructor.name }}</p>
+          <p><strong>אימייל:</strong> {{ instructor.email }}</p>
+          <p><strong>תפקיד:</strong> {{ instructor.role === 'teacher' ? 'מורה' : instructor.role }}</p>
+        </div>
+  
+        ---
+  
+        <div class="taught-courses-section">
+          <h3>קורסים מלומדים:</h3>
+          <ng-container *ngIf="(taughtCourses$ | async) as courses">
+            <div *ngIf="courses.length === 0">
+              <p>{{ instructor.name }} לא מלמד/ת קורסים כרגע.</p>
+            </div>
+            <div *ngIf="courses.length > 0" class="course-list">
+              <mat-card *ngFor="let course of courses" class="course-card">
+                <mat-card-header>
+                  <mat-card-title>{{ course.title }}</mat-card-title>
+                  <mat-card-subtitle>ID: {{ course.id }}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <p>{{ course.description }}</p>
+                  </mat-card-content>
+                <mat-card-actions>
+                  <button mat-button color="accent" (click)="onEditCourse(course.id!)">ערוך קורס</button>
+                  <button mat-button color="warn" (click)="onDeleteCourse(course.id!)">מחק קורס</button>
+                </mat-card-actions>
+              </mat-card>
+            </div>
+          </ng-container>
+        </div>
+      </ng-container>
+      <ng-template #noInstructor>
+        <p>לא נמצא פרופיל מורה עבור ה-ID הזה.</p>
+      </ng-template>
+    </ng-container>
+  </div>

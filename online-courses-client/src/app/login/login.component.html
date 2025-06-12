@@ -1,0 +1,24 @@
+<h2>התחברות</h2>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline">
+    <mat-label>כתובת דוא"ל</mat-label>
+    <input matInput placeholder="להכנס כתובת דוא" formControlName="email" required email />
+    <mat-error *ngIf="loginForm.controls['email']?.invalid">
+      כתובת דוא"ל לא תקינה
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>סיסמה</mat-label>
+    <input matInput type="password" placeholder="הכנס סיסמה" formControlName="password" required />
+    <mat-error *ngIf="loginForm.controls['password']?.invalid">
+      הסיסמה נדרשת
+    </mat-error>
+  </mat-form-field>
+
+  <div class="actions">
+    <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">התחבר</button>
+    <button mat-button (click)="onNoClick()">סגור</button>
+  </div>
+</form>
+

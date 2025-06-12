@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>{{ isNew ? 'הוספת קורס חדש' : 'עריכת קורס' }}</h2>
+
+<form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content class="mat-typography">
+    <mat-form-field appearance="outline" class="full-width-field">
+      <mat-label>כותרת הקורס</mat-label>
+      <input matInput formControlName="title" placeholder="הכנס כותרת קורס" required>
+      <mat-error *ngIf="courseForm.controls['title'].invalid && (courseForm.controls['title'].dirty || courseForm.controls['title'].touched)">
+        כותרת הקורס נדרשת.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width-field">
+      <mat-label>תיאור הקורס</mat-label>
+      <textarea matInput formControlName="description" placeholder="הכנס תיאור קורס" rows="4" required></textarea>
+      <mat-error *ngIf="courseForm.controls['description'].invalid && (courseForm.controls['description'].dirty || courseForm.controls['description'].touched)">
+        תיאור הקורס נדרש.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width-field">
+      <mat-label>מזהה מורה</mat-label>
+      <input matInput type="number" formControlName="teacherId" readonly>
+      <mat-error *ngIf="courseForm.controls['teacherId'].invalid && (courseForm.controls['teacherId'].dirty || courseForm.controls['teacherId'].touched)">
+        מזהה מורה נדרש.
+      </mat-error>
+    </mat-form-field>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" type="submit" [disabled]="courseForm.invalid">
+      שמור
+    </button>
+    <button mat-button (click)="onCancel()" type="button">ביטול</button>
+  </mat-dialog-actions>
+</form>

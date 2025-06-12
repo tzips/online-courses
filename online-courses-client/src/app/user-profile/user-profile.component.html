@@ -1,0 +1,64 @@
+<div class="user-profile-container">
+  <h2 *ngIf="currentUserRole === 'student'">פרופיל תלמיד</h2>
+  <h2 *ngIf="currentUserRole === 'teacher'">פרופיל מורה</h2>
+  <h2 *ngIf="!currentUserRole">פרופיל משתמש</h2>
+
+  <div *ngIf="isLoading" class="loading-indicator">
+    טוען נתונים...
+    <mat-spinner diameter="30"></mat-spinner>
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    <p>שגיאה: {{ error }}</p>
+  </div>
+
+  <ng-container *ngIf="!isLoading && !error">
+    <ng-container *ngIf="(user$ | async) as user; else noUser">
+      <div class="profile-details">
+        <h3>פרטים אישיים:</h3>
+        <p><strong>שם:</strong> {{ user.name }}</p>
+        <p><strong>אימייל:</strong> {{ user.email }}</p>
+        <p><strong>תפקיד:</strong> {{ user.role === 'student' ? 'תלמיד' : 'מורה' }}</p>
+
+        <div class="profile-actions">
+          <button mat-raised-button color="primary" (click)="onEditProfile(user)" class="action-button">
+            עדכן פרופיל
+          </button>
+          <button mat-raised-button color="warn" (click)="onDeleteAccount(user.id!)" class="action-button">
+            מחק חשבון
+          </button>
+        </div>
+      </div>
+
+      <hr> <div class="user-courses">
+        <h3 *ngIf="currentUserRole === 'student'">קורסים רשומים:</h3>
+        <h3 *ngIf="currentUserRole === 'teacher'">קורסים בניהולך:</h3>
+        <h3 *ngIf="!currentUserRole">קורסים:</h3>
+
+        <ng-container *ngIf="(displayedCourses$ | async) as courses">
+          <div *ngIf="courses.length === 0">
+            <p *ngIf="currentUserRole === 'student'">{{ user.name }} לא רשום/ה כרגע לאף קורס.</p>
+            <p *ngIf="currentUserRole === 'teacher'">
+              לצפייה בקורסים שבניהולך ולעריכתם, לחץ/י על "ניהול קורסים" בתפריט הראשי.
+            </p>
+            <p *ngIf="!currentUserRole">אין קורסים זמינים.</p>
+          </div>
+          <ul *ngIf="courses.length > 0" class="course-list">
+            <li *ngFor="let course of courses" class="course-item">
+              <h4>{{ course.title }}</h4>
+              <p>{{ course.description }}</p>
+              <p><strong>מזהה מורה:</strong> {{ course.teacherId }}</p>
+              <button mat-stroked-button color="warn" (click)="onUnenrollCourse(course.id!)"
+                      *ngIf="currentUserRole === 'student'">
+                בטל הרשמה
+              </button>
+            </li>
+          </ul>
+        </ng-container>
+      </div>
+    </ng-container>
+    <ng-template #noUser>
+      <p>לא נמצא פרופיל משתמש עבור ה-ID הזה.</p>
+    </ng-template>
+  </ng-container>
+</div>

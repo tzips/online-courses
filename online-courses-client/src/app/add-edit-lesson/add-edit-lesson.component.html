@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'ערוך שיעור' : 'הוסף שיעור חדש' }}</h2>
+<div mat-dialog-content>
+  <form [formGroup]="lessonForm">
+    <mat-form-field appearance="fill">
+      <mat-label>כותרת השיעור</mat-label>
+      <input matInput formControlName="title">
+      <mat-error *ngIf="lessonForm.controls['title'].hasError('required')">כותרת נדרשת</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>תוכן השיעור</mat-label>
+      <textarea matInput formControlName="content"></textarea>
+      <mat-error *ngIf="lessonForm.controls['content'].hasError('required')">תוכן נדרש</mat-error>
+    </mat-form-field>
+
+    </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">ביטול</button>
+  <button mat-button color="primary" (click)="onSubmit()" [disabled]="lessonForm.invalid">
+    {{ isEditMode ? 'שמור שינויים' : 'הוסף שיעור' }}
+  </button>
+</div>

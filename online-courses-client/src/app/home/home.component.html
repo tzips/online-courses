@@ -1,0 +1,23 @@
+<div class="home-container">
+    <div class="hero-section"> <h2>ברוכים הבאים לקליקוד!</h2>
+      <p>לקודד בקלות, לפצח ביעילות את הקליק שבקוד.</p>
+  
+      <hr> <ng-container *ngIf="authService.isLoggedIn() | async">
+        <p>כיף שחזרתם!</p>
+  
+        <div *ngIf="(authService.currentUserRole$ | async) === 'teacher'" class="teacher-content">
+          <p>כמורים, תוכלו לנהל את הקורסים שלכם דרך סרגל הניווט למעלה.</p>
+        </div>
+  
+        <div *ngIf="(authService.currentUserRole$ | async) === 'student'" class="student-content">
+          <p>כסטודנטים, תוכלו לצפות בקורסים הזמינים דרך סרגל הניווט למעלה.</p>
+        </div>
+      </ng-container>
+  
+      <div *ngIf="!(authService.isLoggedIn() | async)" class="guest-content">
+        <p>אנא התחברו או הירשמו כדי ליהנות מכל תכונות המערכת.</p>
+      </div>
+    </div>
+  </div>
+  
+  
