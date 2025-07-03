@@ -1,42 +1,47 @@
 <div class="course-details-container" *ngIf="course">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>{{ course.title }}</mat-card-title>
-        <mat-card-subtitle>{{ course.description }}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <h3>שיעורים:</h3>
-        <div *ngIf="lessons.length === 0">
-          <p>טרם נוספו שיעורים לקורס זה.</p>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ course.title }}</mat-card-title>
+      <mat-card-subtitle>{{ course.description }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <h3>שיעורים:</h3>
+
+      <div *ngIf="lessons.length === 0">
+        <p>טרם נוספו שיעורים לקורס זה.</p>
+      </div>
+
+      <div *ngIf="lessons.length > 0" class="lessons-container">
+        <div *ngFor="let lesson of lessons" class="lesson-card">
+          <h4>{{ lesson.title }}</h4>
+          <p>{{ lesson.content }}</p>
+
+          <div class="lesson-actions" *ngIf="isTeacher$ | async">
+            <button mat-icon-button (click)="editLesson(lesson)" color="accent" aria-label="ערוך שיעור">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="deleteLesson(lesson.id!)" color="warn" aria-label="מחק שיעור">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
         </div>
-        <mat-list *ngIf="lessons.length > 0">
-          <mat-list-item *ngFor="let lesson of lessons">
-            <h4 matListItemTitle>{{ lesson.title }}</h4>
-            <p matListItemLine>{{ lesson.content }}</p>
-            <div matListItemMeta *ngIf="isTeacher$ | async">
-              <button mat-icon-button (click)="editLesson(lesson)" color="accent" aria-label="ערוך שיעור">
-                <mat-icon>edit</mat-icon>
-              </button>
-              <button mat-icon-button (click)="deleteLesson(lesson.id!)" color="warn" aria-label="מחק שיעור">
-                <mat-icon>delete</mat-icon>
-              </button>
-            </div>
-            <mat-divider></mat-divider>
-          </mat-list-item>
-        </mat-list>
-      </mat-card-content>
-      <mat-card-actions class="course-actions">
-        <button mat-raised-button color="primary" (click)="addLesson()" *ngIf="isTeacher$ | async">
-          <mat-icon>add</mat-icon> הוסף שיעור חדש
-        </button>
-  
-        <button mat-raised-button color="default" (click)="goBack()">
-          <mat-icon>arrow_back</mat-icon> חזרה לרשימת הקורסים
-        </button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-  
-  <div *ngIf="!course" class="loading-message">
-    <p>טוען פרטי הקורס, או שהקורס לא נמצא.</p>
-  </div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions class="course-actions">
+      <button mat-raised-button color="primary" (click)="addLesson()" *ngIf="isTeacher$ | async">
+        <mat-icon>add</mat-icon> הוסף שיעור חדש
+      </button>
+
+      <button mat-raised-button color="default" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon> חזרה לרשימת הקורסים
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<div *ngIf="!course" class="loading-message">
+  <p>טוען פרטי הקורס, או שהקורס לא נמצא.</p>
+</div>
+

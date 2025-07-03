@@ -1,0 +1,157 @@
+/* סגנון גלובלי - סגנון אחיד עם טורקיז כצבע הדומיננטי */
+
+/* טיפוגרפיה בסיסית */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  direction: rtl;  /* ימין לשמאל */
+  background-color: #f0f4f7; /* רקע כללי בהיר */
+  color: #003e52; /* טורקיז כהה כהגדרת צבע טקסט ראשי */
+  line-height: 1.6;
+}
+
+/* קונטיינר מרכזי לכל התוכן */
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;  /* רקע לבן */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 62, 82, 0.1); /* צל עדין טורקיז */
+}
+
+/* כותרות */
+h1, h2, h3, h4 {
+  color: #00b8d4; /* טורקיז בהיר */
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+/* פסקאות */
+p {
+  margin-bottom: 12px;
+  color: #004d60;
+}
+
+/* כפתורים בסיסיים - לבן עם טורקיז */
+button, .btn {
+  background-color: #00b8d4; /* טורקיז */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover, .btn:hover {
+  background-color: #0091a8; /* טורקיז כהה יותר בהאובר */
+}
+
+/* שדות טופס */
+input, select, textarea, .mat-input-element {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid #00b8d4;
+  border-radius: 6px;
+  font-size: 1em;
+  color: #003e52;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus, .mat-input-element:focus {
+  border-color: #0091a8;
+  box-shadow: 0 0 5px #00b8d4;
+}
+
+/* רשימות */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  background-color: #e0f7fa; /* טורקיז בהיר ברקע */
+  border: 1px solid #00b8d4;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 5px rgba(0, 184, 212, 0.2);
+}
+
+/* דיאלוגים / מודאלים */
+.dialog-container {
+  background-color: white;  /* רקע לבן */
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 6px 20px rgba(0, 184, 212, 0.4);
+  max-width: 600px;
+  color: #003e52;
+}
+
+.dialog-container h2 {
+  color: #00b8d4;
+  margin-bottom: 20px;
+}
+
+.dialog-container button {
+  background-color: #00b8d4;
+  color: white;
+}
+
+.dialog-container button:hover {
+  background-color: #0091a8;
+}
+
+/* טעינה ושגיאות */
+.loading-indicator, .error-message {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.1em;
+}
+
+.error-message {
+  color: #b71c1c; /* אדום כהה */
+  background-color: #ffcdd2;
+  border: 1px solid #b71c1c;
+  border-radius: 6px;
+}
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+mat-form-field:hover .mat-form-field-outline,
+mat-form-field:focus-within .mat-form-field-outline,
+mat-form-field.mat-focused .mat-form-field-outline-thick {
+  border-color: #00bcd4 !important;
+}
+
+mat-form-field.mat-focused .mat-form-field-outline-thick {
+  border-width: 2px;
+}
+
+/* רספונסיביות בסיסית */
+@media (max-width: 768px) {
+  .container {
+    margin: 10px;
+    padding: 15px;
+    max-width: 100%;
+  }
+  
+  button, .btn {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  
+  
+  
+}
+
+
